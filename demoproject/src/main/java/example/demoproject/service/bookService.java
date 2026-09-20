@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import example.demoproject.model.author;
 import example.demoproject.model.books;
 import example.demoproject.repository.booksRepository;
 
@@ -16,11 +17,11 @@ public class bookService {
     }
 
     public books getbook() {
-        return new books("The Great Gatsby", "F. Scott Fitzgerald", 100);
+        return new books("The Great Gatsby", new author("F. Scott Fitzgerald", "American"), 100);
     }
 
-    public books addbook(String name, String author, int price) {
-        return new books(name, author, price);
+    public books addbook(String name, author authorName, int price) {
+        return new books(name, authorName, price);
     }
 
     public List<books> getAllBooks() {
@@ -43,7 +44,7 @@ public class bookService {
         return repository.findById(id)
                 .map(book -> {
                     book.setName(updatedBook.getName());
-                    book.setAuthor(updatedBook.getAuthor());
+                    book.setAuthorName(updatedBook.getAuthorName());
                     book.setPrice(updatedBook.getPrice());
                     return repository.save(book);
                 })

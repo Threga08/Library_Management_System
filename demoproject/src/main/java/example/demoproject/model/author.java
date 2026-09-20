@@ -60,4 +60,8 @@ public class author {
     public void setNationality(String nationality) {
         this.nationality = nationality;
     }
+    public void setAuthor(author author) {
+        this.name = author.getName();
+        this.nationality = author.getNationality();
+    }
 }
